@@ -1,0 +1,5 @@
+{
+  "title": "Meu App",
+  "click_me": "Clique",
+  "greeting": "Olá, {{name}}!adicionado por script"
+}

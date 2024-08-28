@@ -1,0 +1,7 @@
+{
+  "title": "Meu App",
+  "greeting": "Olá, {{name}}!",
+  "click_me": "Clique",
+  "new_text": "Novo texto",
+  "news_texts": "[object Object]adicionado por script"
+}

@@ -1,0 +1,9 @@
+{
+  "news_texts": {
+    "text_one": "texto um"
+  },
+  "title": "Meu Appadicionado por script",
+  "greeting": "Olá, {{name}}!adicionado por script",
+  "click_me": "Cliqueadicionado por script",
+  "new_text": "Novo textoadicionado por script"
+}

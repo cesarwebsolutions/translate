@@ -1,0 +1,9 @@
+{
+    "title": "Meu App",
+    "greeting": "Olá, {{name}}!",
+    "click_me": "Clique",
+    "new_text": "Novo texto",
+    "news_texts": {
+        "text_one": "texto um"
+    }
+}
