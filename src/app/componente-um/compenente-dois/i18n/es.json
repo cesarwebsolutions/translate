@@ -1,5 +1,11 @@
 {
+<<<<<<< HEAD
   "title": "Mi aplicación",
   "greeting": "¡Hola, {{nombre}}!",
   "click_me": "Hacer clic"
+=======
+  "title": "Meu Appadicionado por script",
+  "greeting": "Olá, {{name}}!adicionado por script",
+  "click_me": "Cliqueadicionado por script"
+>>>>>>> 0cfc07211adcf2908c524eb8809fed8bdf4a4aea
 }
