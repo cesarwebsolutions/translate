@@ -1,5 +1,7 @@
 {
-    "title": "Meu App",
-    "greeting": "Olá, {{name}}!",
-    "click_me": "Clique"
+  "compenente_dois": {
+    "title": "Oque os olhos não veem, cai na prova",
+    "greeting": "O mundo da voltas, isso explica tanta gente tonta",
+    "click_me": "Em rio de piranha, jacaré nada de camisinha"
+  }
 }

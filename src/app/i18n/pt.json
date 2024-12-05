@@ -1,0 +1,10 @@
+{
+  "select": "Selecione um idioma:",
+  "idiomas": {
+    "pt": "Portugues",
+    "en": "Ingles",
+    "es": "Espanhol"
+  },
+  "greeting": "Olá, {{name}}!",
+  "click_me": "Clique"
+}

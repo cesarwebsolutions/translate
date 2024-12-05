@@ -1,5 +1,7 @@
 {
-    "title": "Meu App",
-    "greeting": "Olá, {{name}}!",
-    "click_me": "Clique"
+  "componente_dois": {
+    "title": "Pau que nasce torto, mija no chão",
+    "greeting": "Quem dá aos pobres, cria filho sozinho",
+    "click_me": "Há males que vem para piorar"
+  }
 }

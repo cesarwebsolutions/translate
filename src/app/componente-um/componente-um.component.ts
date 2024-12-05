@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-componente-um',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './componente-um.component.html',
-  styleUrl: './componente-um.component.scss'
+  styleUrl: './componente-um.component.scss',
 })
-export class ComponenteUmComponent {
-
-}
+export class ComponenteUmComponent {}

@@ -1,5 +1,7 @@
 {
-    "title": "Meu App",
-    "greeting": "Olá, {{name}}!",
-    "click_me": "Clique"
+  "compenente_um": {
+    "title": "Depois da tempestade vem a gripe",
+    "greeting": "Quem com ferro fere, não sabe como dói",
+    "click_me": "Papagaio que acompanha João-de-barro vira ajudante de pedreiro"
+  }
 }

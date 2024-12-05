@@ -1,5 +1,7 @@
 {
-    "title": "Meu App",
-    "greeting": "Olá, {{name}}!",
-    "click_me": "Clique"
+  "componente_um": {
+    "title": "De médico e louco todo mundo tem um pouco",
+    "greeting": "Um dia é da caça, outro do IBAMA",
+    "click_me": "Mais vale um pássaro na mão do que dois voando"
+  }
 }

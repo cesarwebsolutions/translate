@@ -1,7 +1,30 @@
-<div>
-  <button (click)="switchToEnglish()">English</button>
-  <button (click)="switchToFrench()">Portugues</button>
+<div class="container">
+  {{ "select" | translate }}
+  <select
+    class="form-select"
+    style="width: 150px"
+    (change)="onChange($event)"
+    [(ngModel)]="selectedOption"
+  >
+    <option selected value="en">{{ "idiomas.en" | translate }}</option>
+    <option value="pt">{{ "idiomas.pt" | translate }}</option>
+    <option value="es">{{ "idiomas.es" | translate }}</option>
+  </select>
+  <div class="row">
+    <div class="p-2 col-6 m-auto">
+      <app-componente-dois></app-componente-dois>
+    </div>
+    <div class="p-2 col-6">
+      <app-componente-um></app-componente-um>
+    </div>
+    <div class="p-2 col-6">
+      <app-componente-tres></app-componente-tres>
+    </div>
+    <div class="p-2 col-6">
+      <app-compenente-um></app-compenente-um>
+    </div>
+    <div class="p-2 col-6">
+      <app-compenente-dois></app-compenente-dois>
+    </div>
+  </div>
 </div>
-<h1>{{ 'title' | translate }}</h1>
-<p>{{ 'greeting' | translate:{ name: name } }}</p>
-<button>{{ 'click_me' | translate }}</button>

@@ -1,9 +1,11 @@
 {
-  "title": "Meu App",
-  "greeting": "Olá, {{name}}!",
-  "click_me": "Clique",
-  "new_text": "Novo texto",
-  "news_texts": {
-    "text_one": "texto um"
+  "componente_tres": {
+    "title": "Quem ri por último é retardado",
+    "greeting": "Alegrtia de pobre é impossível",
+    "click_me": "Em casa de ferreiro, só tem ferro",
+    "new_text": "Devagar se chega tarde",
+    "news_texts": {
+      "text_one": "A esperança e a sogra, são as últimas que morrem"
+    }
   }
 }
