@@ -8,6 +8,11 @@ const translate = new Translate({
   email: "cesar.sprite@gmail.com",
 });
 
+const fileMapping = {
+  "pt-BR": { default: "pt-BR.json", en: "en-US.json", es: "es-ES.json" },
+  pt: { default: "pt.json", en: "en.json", es: "es.json" },
+};
+
 // Função para traduzir propriedades ausentes em arquivos JSON de tradução
 async function updateTranslationFile(baseContent, targetContent, lang) {
   for (const [key, value] of Object.entries(baseContent)) {
@@ -16,8 +21,23 @@ async function updateTranslationFile(baseContent, targetContent, lang) {
       await updateTranslationFile(value, targetContent[key], lang);
     } else {
       if (!targetContent.hasOwnProperty(key)) {
-        const [translation] = await translate.translate(value, lang);
-        targetContent[key] = translation;
+        const placeholderRegex = /{{(.*?)}}/g;
+
+        const placeholders = [];
+        const protectedText = value.replace(placeholderRegex, (match, p1) => {
+          placeholders.push(match); // Salva o placeholder original
+          return `__PLACEHOLDER_${placeholders.length}__`; // Substitui pelo identificador
+        });
+        const [translatedText] = await translate.translate(protectedText, lang);
+        console.log("[translatedText]", translatedText);
+        const finalText = translatedText.replace(
+          /__PLACEHOLDER_(\d+)__/g,
+          (match, p1) => {
+            return placeholders[parseInt(p1) - 1]; // Recupera o placeholder original
+          }
+        );
+        console.log("[finalText]", finalText);
+        targetContent[key] = finalText;
       }
     }
   }
@@ -33,21 +53,21 @@ async function traverseAndTranslate(directory, targetLang = "en") {
     if (fs.statSync(fullPath).isDirectory()) {
       // Se a pasta é `i18n`, verifica se contém `pt`
       if (file === "i18n") {
-        console.log(fullPath);
-        const ptFilePath = path.join(fullPath, "pt.json");
-        const targetFilePath = path.join(fullPath, `${targetLang}.json`);
-
-        console.log(ptFilePath);
-        if (fs.existsSync(ptFilePath)) {
-          const ptContent = JSON.parse(fs.readFileSync(ptFilePath, "utf8"));
-          console.log(ptContent);
+        const { filePath, targetFilePath } = await getFilePaths(
+          fullPath,
+          targetLang
+        );
+        if (fs.existsSync(filePath)) {
+          console.log("[filePath]", filePath);
+          const ptContent = JSON.parse(fs.readFileSync(filePath, "utf8"));
+          // console.log(ptContent);
           let targetContent = {};
 
           // Lê o arquivo de tradução existente (en.json), se houver
           if (fs.existsSync(targetFilePath)) {
             targetContent = JSON.parse(fs.readFileSync(targetFilePath, "utf8"));
           }
-          console.log(targetContent);
+          // console.log(targetContent);
 
           // Atualiza o conteúdo com as traduções ausentes
           await updateTranslationFile(ptContent, targetContent, targetLang);
@@ -58,7 +78,7 @@ async function traverseAndTranslate(directory, targetLang = "en") {
             JSON.stringify(targetContent, null, 2),
             "utf8"
           );
-          console.log(`Arquivo de tradução atualizado: ${targetFilePath}`);
+          // console.log(`Arquivo de tradução atualizado: ${targetFilePath}`);
         }
       } else {
         // Continua a busca nos subdiretórios
@@ -68,10 +88,31 @@ async function traverseAndTranslate(directory, targetLang = "en") {
   }
 }
 
+async function getFilePaths(fullPath, targetLang) {
+  const langPriority = ["pt-BR", "pt"];
+  let filePath, targetFilePath;
+
+  for (const lang of langPriority) {
+    const defaultFilePath = path.join(fullPath, fileMapping[lang].default);
+
+    if (fs.existsSync(defaultFilePath)) {
+      filePath = defaultFilePath;
+      targetFilePath = fileMapping[lang][targetLang]
+        ? path.join(fullPath, fileMapping[lang][targetLang])
+        : null;
+      break;
+    }
+  }
+
+  return { filePath, targetFilePath };
+}
+
 // Função principal
 (async function main() {
   const projectRoot = path.join(__dirname, "../src"); // Ajuste o caminho conforme a estrutura do seu projeto
   ["en", "es"].forEach(async (lang) => {
+    console.log("starting translation ", lang);
     await traverseAndTranslate(projectRoot, lang);
+    console.log("finish translation");
   });
 })();
